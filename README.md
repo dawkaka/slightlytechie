@@ -1,2 +1,0 @@
-# slightlytechie
-slightly techie task
