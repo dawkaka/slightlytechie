@@ -9,7 +9,7 @@ import { Layout } from "./components/Layout";
 
 export default function App() {
   return (
-    <div>
+    <div className="h-[100vh]">
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>

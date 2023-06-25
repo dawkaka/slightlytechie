@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 .custom-container {
-  width: 1200px;
+  width: min(100%, 1200px);
+}
+
+body {
+  height: 100%;
 }
