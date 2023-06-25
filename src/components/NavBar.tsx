@@ -15,7 +15,7 @@ export default function NavBar() {
                 <ul className="flex flex-row items-center gap-4 w-80 justify-between">
                     <li>
                         <Link to="/">
-                            <NavIcon logo={HomeLogo} caption="Write" />
+                            <NavIcon logo={HomeLogo} caption="Home" />
                         </Link>
                     </li>
                     <li>
@@ -24,7 +24,7 @@ export default function NavBar() {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/posts">
+                        <Link to="/all-posts">
                             <NavIcon logo={ViewAllLogo} caption="Posts" />
                         </Link>
                     </li>
