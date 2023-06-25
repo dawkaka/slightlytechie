@@ -3,6 +3,7 @@ import ViewAllLogo from "../assets/viewall.svg"
 import ThemeToggle from "./ThemeToggle";
 import Profile from "./Profile";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
     return (
@@ -11,9 +12,20 @@ export default function NavBar() {
                 <Profile />
                 <Search />
                 <ul className="flex flex-row items-center gap-4 w-80 justify-between">
-                    <NavIcon logo={WriteLogo} />
-                    <NavIcon logo={ViewAllLogo} />
-                    <ThemeToggle />
+                    <li>
+                        <Link to="/">
+                            <NavIcon logo={WriteLogo} caption="Write" />
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/write-post">
+                            <NavIcon logo={ViewAllLogo} caption="Posts" />
+                        </Link>
+                    </li>
+                    <li className="flex flex-col items-center">
+                        <ThemeToggle />
+                        <span>Theme</span>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -60,12 +72,11 @@ function SearchResults({ results }: { results: string[] }) {
 
 
 
-function NavIcon({ logo }: { logo: string }) {
+function NavIcon({ logo, caption }: { logo: string, caption: string }) {
     return (
-        <li>
-            <figure className="flex flex-col items-center">
-                <img src={logo} alt="Icon" className="h-[30px] w-[30px]" />
-            </figure>
-        </li>
+        <figure className="flex flex-col items-center">
+            <img src={logo} alt={`${caption}`} className="h-[30px] w-[30px]" />
+            <figcaption>{caption}</figcaption>
+        </figure>
     )
 }
