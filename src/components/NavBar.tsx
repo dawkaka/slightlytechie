@@ -1,6 +1,7 @@
 import WriteLogo from '../assets/writeB.svg'
 import ViewAllLogo from "../assets/viewall.svg"
 import ThemeToggle from "./ThemeToggle";
+import HomeLogo from "../assets/home.svg"
 import Profile from "./Profile";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -14,17 +15,22 @@ export default function NavBar() {
                 <ul className="flex flex-row items-center gap-4 w-80 justify-between">
                     <li>
                         <Link to="/">
-                            <NavIcon logo={WriteLogo} caption="Write" />
+                            <NavIcon logo={HomeLogo} caption="Write" />
                         </Link>
                     </li>
                     <li>
                         <Link to="/write-post">
+                            <NavIcon logo={WriteLogo} caption="Write" />
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/posts">
                             <NavIcon logo={ViewAllLogo} caption="Posts" />
                         </Link>
                     </li>
                     <li className="flex flex-col items-center">
                         <ThemeToggle />
-                        <span>Theme</span>
+                        <span className="text-sm">Theme</span>
                     </li>
                 </ul>
             </div>
@@ -75,8 +81,8 @@ function SearchResults({ results }: { results: string[] }) {
 function NavIcon({ logo, caption }: { logo: string, caption: string }) {
     return (
         <figure className="flex flex-col items-center">
-            <img src={logo} alt={`${caption}`} className="h-[30px] w-[30px]" />
-            <figcaption>{caption}</figcaption>
+            <img src={logo} alt={`${caption}`} className="h-[25px] w-[25px]" />
+            <figcaption className="text-sm">{caption}</figcaption>
         </figure>
     )
 }
