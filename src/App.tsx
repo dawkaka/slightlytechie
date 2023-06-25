@@ -3,22 +3,26 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-} from "react-router-dom"; import HomePage from "./pages/Home";
+} from "react-router-dom";
+import HomePage from "./pages/Home";
+import { Provider } from "jotai";
 import WritePost from "./pages/WritePost";
 import { Layout } from "./components/Layout";
 
 export default function App() {
   return (
-    <div className="h-[100vh]">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/write-post" element={<WritePost />} />
-          </Route>
-        </Routes>
-      </Router>
-    </div>
+    <Provider>
+      <div className="h-[100vh]">
+        <Router>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<HomePage />} />
+              <Route path="/write-post" element={<WritePost />} />
+            </Route>
+          </Routes>
+        </Router>
+      </div>
+    </Provider>
   );
 }
 
