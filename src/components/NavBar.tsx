@@ -36,6 +36,7 @@ function Search() {
                     className="block w-full outline-none p-3 pl-10 text-violet11 shadow-violet7 focus:shadow-violet8 rounded-lg shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     placeholder="Search Mockups, Logos..."
                     value={query}
+                    onBlur={() => setQuery("")}
                     onChange={(e) => setQuery(e.target.value)}
                 />
             </div>

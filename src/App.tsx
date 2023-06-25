@@ -1,17 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import NavBar from "./components/NavBar"
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom"; import HomePage from "./pages/Home";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <NavBar />
-    </>
-  )
+    <div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </Router>
+    </div>
+  );
 }
 
-export default App
