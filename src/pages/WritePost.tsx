@@ -1,10 +1,13 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import * as Form from '@radix-ui/react-form';
-import { FontBoldIcon, FontItalicIcon, HeadingIcon, Link1Icon, QuoteIcon, CodeIcon, ImageIcon } from '@radix-ui/react-icons';
-
+import { FontBoldIcon, FontItalicIcon, HeadingIcon, Link1Icon, QuoteIcon, CodeIcon, ImageIcon, ListBulletIcon } from '@radix-ui/react-icons';
+import OrderedListIcon from "../assets/orderedList.svg"
+import CodeLineIcon from "../assets/code.svg"
 
 export default function WritePost() {
     const [view, setView] = useState<"edit" | "view">("edit")
+    const [postBody, setPostBody] = useState("")
+    const [title, setTitle] = useState("")
     const active = "w-[90px] text-violet11 border-b border-b-2 border-violet11"
     const norm = "w-[90px] hover:text-violet11"
     return (
@@ -19,7 +22,7 @@ export default function WritePost() {
                 </div>
                 <div className="w-full p-6 bg-white mt-6">
                     {
-                        view === "edit" ? <PostEditor /> : null
+                        view === "edit" ? <PostEditor postBody={postBody} setPostBody={setPostBody} title={title} setTitle={setTitle} /> : <MarkdownView body={postBody} title={title} />
                     }
                 </div>
             </div>
@@ -28,9 +31,77 @@ export default function WritePost() {
 }
 
 
+function MarkdownView({ body, title }: { body: string, title: string }) {
+    return (
+        <div>
+            <h1>{title}</h1>
+            <p>{body}</p>
+        </div>
+    )
+}
 
-function PostEditor() {
-    const [postBody, setPostBody] = useState("")
+interface PostEditorProps {
+    postBody: string,
+    setPostBody: (v: string) => void,
+    title: string,
+    setTitle: (v: string) => void
+}
+
+function PostEditor({ postBody, setPostBody, title, setTitle }: PostEditorProps) {
+    const bodyRef = useRef<HTMLTextAreaElement>(null)
+
+    const insertMarkdownElement = (type: "bold" | "italic" | "code" | "code_block" | "image" | "link" | "heading" | "quote" | "ord_list" | "unord_list") => {
+        if (bodyRef.current) {
+            const start = bodyRef.current.selectionStart;
+            const end = bodyRef.current.selectionEnd;
+            const selectedText = bodyRef.current.value.substring(start, end);
+            let value = postBody
+            switch (type) {
+                case "bold":
+                    value = bodyRef.current.value.substring(0, start) + "**" + selectedText + "**" + bodyRef.current.value.substring(end);
+                    setPostBody(value)
+                    break;
+                case "italic":
+                    value = bodyRef.current.value.substring(0, start) + "*" + selectedText + "*" + bodyRef.current.value.substring(end);
+                    setPostBody(value)
+                    break;
+                case "code":
+                    value = bodyRef.current.value.substring(0, start) + "`" + selectedText + "`" + bodyRef.current.value.substring(end);
+                    setPostBody(value)
+                    break;
+                case "code_block":
+                    value = bodyRef.current.value.substring(0, start) + "```\n" + selectedText + "\n```" + bodyRef.current.value.substring(end);
+                    setPostBody(value)
+                    break;
+                case "link":
+                    value = bodyRef.current.value.substring(0, start) + "(" + selectedText + ")" + "[]" + bodyRef.current.value.substring(end);
+                    setPostBody(value)
+                    break;
+                case "heading":
+                    value = bodyRef.current.value.substring(0, start) + "#" + selectedText + bodyRef.current.value.substring(end);
+                    setPostBody(value)
+                    break;
+                case "quote":
+                    value = bodyRef.current.value.substring(0, start) + "\n|>" + selectedText + bodyRef.current.value.substring(end);
+                    setPostBody(value)
+                    break;
+                case "unord_list":
+                    value = bodyRef.current.value.substring(0, start) + "\n-" + selectedText + "\n```" + bodyRef.current.value.substring(end);
+                    setPostBody(value)
+                    break;
+                case "ord_list":
+                    value = bodyRef.current.value.substring(0, start) + "\n1." + selectedText + "\n```" + bodyRef.current.value.substring(end);
+                    setPostBody(value)
+                    break;
+                case "image":
+                    value = bodyRef.current.value.substring(0, start) + "\n![Image description](image url)" + bodyRef.current.value.substring(end);
+                    setPostBody(value)
+                    break;
+                default:
+                    console.log("unsupported type")
+            }
+        }
+    }
     return (
         <Form.Root className="" onSubmit={(e) => {
             e.preventDefault()
@@ -51,17 +122,23 @@ function PostEditor() {
                         className="box-border w-full shadow-blackA9 inline-flex h-[35px] appearance-none items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-[0_0_0_2px_black] selection:color-white selection:bg-blackA9"
                         type="text"
                         placeholder="Post Title.."
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
                         required
                     />
                 </Form.Control>
             </Form.Field >
             <div className="bg-gray-100 flex items-center gap-5 justify-center w-full p-2">
-                <FontBoldIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" />
-                <FontBoldIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" />
-                <FontBoldIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" />
-                <FontBoldIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" />
-                <FontBoldIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" />
-                <FontBoldIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" />
+                <FontBoldIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("bold")} />
+                <FontItalicIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("italic")} />
+                <Link1Icon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("link")} />
+                <HeadingIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("heading")} />
+                <QuoteIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("quote")} />
+                <img src={CodeLineIcon} height={35} width={35} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("code")} />
+                <CodeIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("code_block")} />
+                <img src={OrderedListIcon} height={35} width={35} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("ord_list")} />
+                <ListBulletIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("unord_list")} />
+                <ImageIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("image")} />
 
             </div>
             <Form.Field className="grid mb-[10px]" name="question">
@@ -75,6 +152,7 @@ function PostEditor() {
                 </div>
                 <Form.Control asChild>
                     <textarea
+                        ref={bodyRef}
                         className="box-border w-full h-[500px] shadow-blackA9 inline-flex appearance-none items-center justify-center rounded-[4px] p-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none hover:shadow-[0_0_0_1px_black] focus:shadow-[0_0_0_2px_black] selection:color-white selection:bg-blackA9 resize-none"
                         required
                         placeholder="Post body..."

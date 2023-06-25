@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 export default function NavBar() {
     return (
-        <nav className="px-2 py-4 border-b flex flex-col items-center">
+        <nav className="sticky top-0 bg-white px-2 py-4 border-b flex flex-col items-center">
             <div className="custom-container flex justify-between  flex-auto items-center gap-4">
                 <Profile />
                 <Search />
