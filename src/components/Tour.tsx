@@ -1,11 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { Cross2Icon, Pencil1Icon } from '@radix-ui/react-icons';
-import * as Avatar from '@radix-ui/react-avatar';
-import * as AspectRatio from '@radix-ui/react-aspect-ratio';
-import { useAtom } from "jotai";
-import { stateAtom } from "../jotai";
-import { useState } from "react";
-import ToastD from "./Toast";
+import { Cross2Icon } from '@radix-ui/react-icons';
 
 
 const Tour = ({ open, setOpen }: { open: boolean, setOpen: (b: boolean) => void }) => {
