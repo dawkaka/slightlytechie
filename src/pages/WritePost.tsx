@@ -41,7 +41,7 @@ export default function WritePost() {
                         view === "edit" && <PostEditor action="Publish post" postBody={postBody} setPostBody={setPostBody} title={title} setTitle={setTitle} save={savePost} />
                     }
                     {
-                        view === "view" && <MarkdownView body={postBody} title={title} />
+                        view === "view" && <div className="h-[70vh] overflow-auto w-full"><MarkdownView body={postBody} title={title} /></div>
                     }
                 </div>
             </div>

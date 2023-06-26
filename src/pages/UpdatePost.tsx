@@ -38,7 +38,7 @@ export default function UpdatePost() {
                     post ? (
                         <>
                             <div className="flex w-full justify-between items-center">
-                                <h1 className="text-3xl font-bold">Create Post</h1>
+                                <h1 className="text-3xl font-bold">Update Post</h1>
                                 <div className="flex gap-10">
                                     <button onClick={() => setView("edit")} className={view === "edit" ? active : norm}>Edit</button>
                                     <button onClick={() => setView("view")} className={view === "view" ? active : norm}>Preview</button>
@@ -49,7 +49,7 @@ export default function UpdatePost() {
                                     view === "edit" && <PostEditor action="Update post" postBody={postBody} setPostBody={setPostBody} title={title} setTitle={setTitle} save={savePost} />
                                 }
                                 {
-                                    view === "view" && <MarkdownView body={postBody} title={title} />
+                                    view === "view" && <div className="h-[70vh] overflow-auto w-full"><MarkdownView body={postBody} title={title} /></div>
                                 }
                             </div>
                         </>) :

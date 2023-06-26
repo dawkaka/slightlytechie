@@ -10,7 +10,7 @@ import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
 export function MarkdownView({ body, title }: { body: string, title: string }) {
 
     return (
-        <div className="w-full p-6 bg-white mt-6" style={{ width: "100%", maxHeight: "70vh", overflow: "auto" }}>
+        <div className="w-full p-6 bg-white mt-6">
             <h1 className="text-6xl mb-10 font-bold">{title}</h1>
             <hr />
             <div className="prose" style={{ marginTop: "50px" }}>
