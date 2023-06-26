@@ -4,7 +4,7 @@ import Post from "../components/Post"
 
 
 export default function AllPosts() {
-    const [appState, setAppState] = useAtom(stateAtom)
+    const [appState] = useAtom(stateAtom)
     const posts = appState.posts
     return (
         <main className="flex flex-col items-center">

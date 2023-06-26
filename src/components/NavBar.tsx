@@ -10,7 +10,7 @@ import { stateAtom } from "../jotai";
 
 export default function NavBar() {
     return (
-        <nav className="sticky top-0 bg-white px-2 py-4 border-b flex flex-col items-center">
+        <nav className="sticky top-0 bg-white z-10 px-2 py-4 border-b flex flex-col items-center">
             <div className="custom-container flex justify-between  flex-auto items-center gap-4">
                 <Profile />
                 <Search />
@@ -29,10 +29,6 @@ export default function NavBar() {
                         <Link to="/all-posts">
                             <NavIcon logo={ViewAllLogo} caption="Posts" />
                         </Link>
-                    </li>
-                    <li className="flex flex-col items-center">
-                        <ThemeToggle />
-                        <span className="text-sm">Theme</span>
                     </li>
                 </ul>
             </div>
@@ -98,9 +94,9 @@ function SearchResults({ results }: { results: { title: string, id: string }[] }
 
 function NavIcon({ logo, caption }: { logo: string, caption: string }) {
     return (
-        <figure className="flex flex-col items-center">
+        <figure className="flex flex-col items-center text-violet-500" style={{ color: "red" }}>
             <img src={logo} alt={`${caption}`} className="h-[25px] w-[25px]" />
-            <figcaption className="text-sm">{caption}</figcaption>
+            <figcaption className="text-sm text-gray-600">{caption}</figcaption>
         </figure>
     )
 }

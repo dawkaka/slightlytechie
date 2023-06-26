@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 import { defalutPosts } from "./contants";
-import { PostType, AppState } from "../types"
+import { AppState } from "../types"
 
 
 const atomWithLocalStorage = (key: string, initialValue: AppState) => {
@@ -25,6 +25,6 @@ const atomWithLocalStorage = (key: string, initialValue: AppState) => {
 }
 
 export const stateAtom = atomWithLocalStorage("app", {
-    profile: { image: "", name: "Jon Doe" },
+    profile: { image: "https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80", name: "Jon Doe" },
     posts: defalutPosts,
 })
