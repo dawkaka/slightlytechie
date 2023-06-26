@@ -40,7 +40,7 @@ const Profile = () => {
                         <Avatar.Image
                             className="h-full w-full rounded-[inherit] object-cover"
                             src={p.image}
-                            alt="Colm Tuite"
+                            alt="Avatar"
                         />
                         <Avatar.Fallback
                             className="text-violet11 leading-1 flex h-full w-full items-center justify-center bg-white text-[15px] font-medium"

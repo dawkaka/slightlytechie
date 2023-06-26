@@ -3,8 +3,10 @@ import ViewAllLogo from "../assets/viewall.svg"
 import ThemeToggle from "./ThemeToggle";
 import HomeLogo from "../assets/home.svg"
 import Profile from "./Profile";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useAtom } from "jotai";
+import { stateAtom } from "../jotai";
 
 export default function NavBar() {
     return (
@@ -41,6 +43,14 @@ export default function NavBar() {
 
 function Search() {
     const [query, setQuery] = useState("")
+    const [appState] = useAtom(stateAtom)
+    const location = useLocation()
+
+    useEffect(() => {
+        setQuery("")
+    }, [location])
+
+    const posts = appState.posts.filter(p => p.title.toLocaleLowerCase().includes(query.toLocaleLowerCase())).map(p => { return { title: p.title, id: p.id } })
     return (
         <form className="relative w-1/2">
             <label htmlFor="default-search" className="text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -54,23 +64,31 @@ function Search() {
                     className="block w-full outline-none p-3 pl-10 text-violet11 shadow-violet7 focus:shadow-violet8 rounded-lg shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
                     placeholder="Search Mockups, Logos..."
                     value={query}
-                    onBlur={() => setQuery("")}
                     onChange={(e) => setQuery(e.target.value)}
                 />
             </div>
             {
-                query.length > 0 && <SearchResults results={["What is your name", "Hello world", "Ghana to the world"]} />
+                query.length > 0 && <SearchResults results={posts} />
             }
         </form>
     )
 }
 
-function SearchResults({ results }: { results: string[] }) {
+function SearchResults({ results }: { results: { title: string, id: string }[] }) {
     return (
-        <div className="absolute shadow top-[100%] p-6 bg-white w-full">
-            {
-                results.map(r => <h1 key={r}>{r}</h1>)
-            }
+        <div className="absolute shadow top-[100%] bg-white w-full">
+            <div className="flex flex-col">
+                {
+                    results.map(r => {
+                        return (
+                            <Link to={`/post/${r.id}`} className="px-4 py-2 hover:bg-violet-400 hover:text-white cursor-pointer">
+                                <span>{r.title}</span>
+                            </Link>
+                        )
+                    })
+                }
+            </div>
+
         </div>
     )
 }
