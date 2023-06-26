@@ -8,9 +8,9 @@ import ToastD from "./Toast";
 
 
 export default function Post({ post }: { post: PostType }) {
-    const { cover, title, id } = post
+    const { cover, title, id, body } = post
     return (
-        <article className="border rounded-lg max-w-3xl">
+        <article className="border flex flex-col rounded-lg max-w-3xl">
             <img
                 className="w-full object-cover"
                 src={"https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80"}
@@ -19,7 +19,8 @@ export default function Post({ post }: { post: PostType }) {
                 <Link to={`/post/${id}`}>
                     <h3 className="text-xl font-semibold underline hover:text-violet11">{title}</h3>
                 </Link>
-                <div className="flex justify-end gap-4 mt-10">
+                <p className="text-gray-600 mt-2 mb-8">{body.replace(/[^\w\s\n]/g, "").substring(0, 100).trim() + "..."}</p>
+                <div className="w-full flex justify-end gap-4 mt-[auto]">
                     <Link to={`/update/${id}`}>
                         <button className="px-2 py-1 rounded-lg bg-green-400 text-white hover:bg-green-600">Update</button>
                     </Link>
