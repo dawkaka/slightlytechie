@@ -12,11 +12,22 @@ import AllPosts from "./pages/AllPosts";
 import UpdatePost from "./pages/UpdatePost";
 import ViewPost from "./pages/ViewPost";
 import NotFound from "./pages/NotFound";
+import Tour from "./components/Tour";
+import { useEffect, useState } from "react";
 
 export default function App() {
+  const [open, setOpen] = useState(false)
+  useEffect(() => {
+    const isNew = localStorage.getItem("is_new")
+    if (!isNew) {
+      setOpen(true)
+      localStorage.setItem("is_new", "false")
+    }
+  }, [])
   return (
     <Provider>
       <div className="h-[100vh]">
+        <Tour open={open} setOpen={setOpen} />
         <Router>
           <Routes>
             <Route path="/" element={<Layout />}>
