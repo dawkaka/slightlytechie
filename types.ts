@@ -1,7 +1,7 @@
 export interface AppState {
     profile: { image: string, name: string },
     posts: PostType[]
-    unsaved?: PostType
+    unsaved: { title: string, body: string }
 }
 
 export interface PostType {

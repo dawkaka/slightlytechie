@@ -10,7 +10,7 @@ import { stateAtom } from "../jotai";
 
 export default function NavBar() {
     return (
-        <nav className="sticky top-0 bg-white z-10 px-2 py-4 border-b flex flex-col items-center">
+        <nav className="sticky top-0 bg-white z-2 px-2 py-4 border-b flex flex-col items-center">
             <div className="custom-container flex justify-between  flex-auto items-center gap-2">
                 <Profile />
                 <Search />

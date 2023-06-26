@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useAtom } from "jotai";
 import { stateAtom } from "../jotai"
 import { PostType } from "../../types";
@@ -10,9 +10,9 @@ import ToastD from "../components/Toast";
 export default function WritePost() {
     const [appState, setAppState] = useAtom(stateAtom)
     const [view, setView] = useState<"edit" | "view">("edit")
-    const [postBody, setPostBody] = useState(``)
+    const [postBody, setPostBody] = useState(appState.unsaved.body)
     const [open, setOpen] = useState(false)
-    const [title, setTitle] = useState("")
+    const [title, setTitle] = useState(appState.unsaved.title)
     const active = "w-[90px] text-violet11 border-b border-b-2 border-violet11"
     const norm = "w-[90px] hover:text-violet11"
 
@@ -25,8 +25,12 @@ export default function WritePost() {
             id: `${title.replace(" ", "_")}_${generateId()}`
         }
         posts.push(newPost)
-        setAppState({ ...appState, posts })
+        setAppState({ ...appState, posts, unsaved: { title: "", body: "" } })
         setOpen(true)
+    }, [title, postBody])
+
+    useEffect(() => {
+        setAppState({ ...appState, unsaved: { title, body: postBody } })
     }, [title, postBody])
 
     return (

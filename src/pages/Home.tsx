@@ -4,7 +4,7 @@ import Post from "../components/Post"
 
 const HomePage = () => {
     const [appState] = useAtom(stateAtom)
-    const posts = appState.posts
+    const posts = appState.posts.reverse()
 
     return (
         <main className="flex flex-col items-center">
