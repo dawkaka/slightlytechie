@@ -1,15 +1,17 @@
-import { useCallback, useRef, useState } from "react"
+import { useCallback, useState } from "react"
 import { useAtom } from "jotai";
 import { stateAtom } from "../jotai"
 import { PostType } from "../../types";
 import { generateId } from "../utils"
 import { MarkdownView } from "../components/MarkdownView";
 import { PostEditor } from "../components/PostEditor";
+import ToastD from "../components/Toast";
 
 export default function WritePost() {
     const [appState, setAppState] = useAtom(stateAtom)
     const [view, setView] = useState<"edit" | "view">("edit")
     const [postBody, setPostBody] = useState(``)
+    const [open, setOpen] = useState(false)
     const [title, setTitle] = useState("")
     const active = "w-[90px] text-violet11 border-b border-b-2 border-violet11"
     const norm = "w-[90px] hover:text-violet11"
@@ -24,6 +26,7 @@ export default function WritePost() {
         }
         posts.push(newPost)
         setAppState({ ...appState, posts })
+        setOpen(true)
     }, [title, postBody])
 
     return (
@@ -44,6 +47,7 @@ export default function WritePost() {
                         view === "view" && <div className="h-[70vh] overflow-auto w-full"><MarkdownView body={postBody} title={title} /></div>
                     }
                 </div>
+                <ToastD open={open} setOpen={setOpen} title="Post created" description="Post created successfully!" />
             </div>
         </main>
     )

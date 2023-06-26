@@ -4,6 +4,7 @@ import { stateAtom } from "../jotai"
 import { MarkdownView } from "../components/MarkdownView";
 import { PostEditor } from "../components/PostEditor";
 import { useParams } from "react-router-dom";
+import ToastD from "../components/Toast";
 
 export default function UpdatePost() {
     const [appState, setAppState] = useAtom(stateAtom)
@@ -12,6 +13,7 @@ export default function UpdatePost() {
     const [title, setTitle] = useState("")
     const active = "w-[90px] text-violet11 border-b border-b-2 border-violet11"
     const norm = "w-[90px] hover:text-violet11"
+    const [open, setOpen] = useState(false)
     const { id } = useParams();
     let post = appState.posts.find((p) => p.id === id)
 
@@ -28,6 +30,7 @@ export default function UpdatePost() {
             return p
         })
         setAppState({ ...appState, posts })
+        setOpen(true)
     }, [title, postBody])
 
 
@@ -55,7 +58,7 @@ export default function UpdatePost() {
                         </>) :
                         <h3 className="text-5xl font-bold text-gray-700">POST NOT FOUND</h3>
                 }
-
+                <ToastD open={open} setOpen={setOpen} title="Post updated" description="Post updated successfully!" />
             </div>
         </main>
     )

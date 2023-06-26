@@ -5,11 +5,13 @@ import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import { useAtom } from "jotai";
 import { stateAtom } from "../jotai";
 import { useState } from "react";
+import ToastD from "./Toast";
 
 
 const Profile = () => {
     const [appState, setAppState] = useAtom(stateAtom)
     const [p, setP] = useState({ name: appState.profile.name, image: appState.profile.image })
+    const [open, setOpen] = useState(false)
 
     function handleFileInput(e: React.ChangeEvent<HTMLInputElement>) {
         const fs = e.currentTarget.files;
@@ -29,6 +31,7 @@ const Profile = () => {
 
     function saveProfile() {
         setAppState({ ...appState, profile: p })
+        setOpen(true)
     }
 
     return (
@@ -109,6 +112,7 @@ const Profile = () => {
                     </Dialog.Close>
                 </Dialog.Content>
             </Dialog.Portal >
+            <ToastD open={open} setOpen={setOpen} title="Profile updated" description="Profile updated successfully!" />
         </Dialog.Root >
     )
 };

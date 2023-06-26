@@ -74,6 +74,7 @@ export function PostEditor({ postBody, setPostBody, title, setTitle, save, actio
     return (
         <div className="w-full p-6 bg-white mt-6" >
             <Form.Root className="" onSubmit={(e) => {
+                e.preventDefault()
                 save()
             }}>
                 <Form.Field className="grid mb-[10px]" name="email">

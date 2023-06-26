@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { PostType } from "../../types";
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
-import * as Toast from '@radix-ui/react-toast';
 import { useState } from "react";
 import { useAtom } from "jotai";
 import { stateAtom } from "../jotai";
+import ToastD from "./Toast";
 
 
 export default function Post({ post }: { post: PostType }) {
@@ -35,7 +35,7 @@ function DeleteDialog({ id }: { id: string }) {
     const [appState, setAppState] = useAtom(stateAtom)
     const [open, setOpen] = useState(false)
     return (
-        <>
+        <div>
             <AlertDialog.Root>
                 <AlertDialog.Trigger asChild>
                     <button className="px-2 py-1 rounded-lg bg-red-400 text-white hover:bg-red-600">Delete</button>
@@ -70,29 +70,8 @@ function DeleteDialog({ id }: { id: string }) {
                     </AlertDialog.Content>
                 </AlertDialog.Portal>
             </AlertDialog.Root>
-            <ToastD open={open} setOpen={setOpen} />
-        </>
+            <ToastD open={open} setOpen={setOpen} title="Post deleted" description="Post deleted successfully!" />
+        </div>
     )
 }
 
-
-const ToastD = ({ open, setOpen }: { open: boolean, setOpen: (b: boolean) => void }) => {
-
-    return (
-        <Toast.Provider swipeDirection="right">
-            <Toast.Root
-                className="bg-white rounded-md shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] p-[15px] grid [grid-template-areas:_'title_action'_'description_action'] grid-cols-[auto_max-content] gap-x-[15px] items-center data-[state=open]:animate-slideIn data-[state=closed]:animate-hide data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=cancel]:translate-x-0 data-[swipe=cancel]:transition-[transform_200ms_ease-out] data-[swipe=end]:animate-swipeOut"
-                open={open}
-                onOpenChange={setOpen}
-            >
-                <Toast.Title className="[grid-area:_title] mb-[5px] font-medium text-slate-700 text-[15px]">
-                    Post deleted
-                </Toast.Title>
-                <Toast.Description asChild>
-                    <p className="[grid-area:_description] m-0 text-slate-600 text-[13px] leading-[1.3]">Post has been deleted successfully</p>
-                </Toast.Description>
-            </Toast.Root>
-            <Toast.Viewport className="[--viewport-padding:_25px] fixed bottom-0 right-0 flex flex-col p-[var(--viewport-padding)] gap-[10px] w-[390px] max-w-[100vw] m-0 list-none z-[2147483647] outline-none" />
-        </Toast.Provider>
-    );
-};
