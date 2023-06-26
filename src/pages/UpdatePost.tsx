@@ -46,7 +46,7 @@ export default function UpdatePost() {
                             </div>
                             <div className="w-full bg-white mt-6">
                                 {
-                                    view === "edit" && <PostEditor postBody={postBody} setPostBody={setPostBody} title={title} setTitle={setTitle} save={savePost} />
+                                    view === "edit" && <PostEditor action="Update post" postBody={postBody} setPostBody={setPostBody} title={title} setTitle={setTitle} save={savePost} />
                                 }
                                 {
                                     view === "view" && <MarkdownView body={postBody} title={title} />

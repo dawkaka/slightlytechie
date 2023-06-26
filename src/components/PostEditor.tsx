@@ -10,11 +10,12 @@ interface PostEditorProps {
     setPostBody: (v: string) => void,
     title: string,
     setTitle: (v: string) => void,
-    save: () => void
+    save: () => void,
+    action: string
 }
 
 
-export function PostEditor({ postBody, setPostBody, title, setTitle, save }: PostEditorProps) {
+export function PostEditor({ postBody, setPostBody, title, setTitle, save, action }: PostEditorProps) {
     const bodyRef = useRef<HTMLTextAreaElement>(null)
 
     const insertMarkdownElement = (type: "bold" | "italic" | "code" | "code_block" | "image" | "link" | "heading" | "quote" | "ord_list" | "unord_list") => {
@@ -131,7 +132,7 @@ export function PostEditor({ postBody, setPostBody, title, setTitle, save }: Pos
                 </Form.Field>
                 <Form.Submit asChild onSubmit={(e) => console.log(e)}>
                     <button className="box-border text-white w-full hover:text-violet11 shadow-blackA7 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-violet11 px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none mt-[10px]">
-                        Publish post
+                        {action}
                     </button>
                 </Form.Submit>
             </Form.Root >

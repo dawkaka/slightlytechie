@@ -10,6 +10,7 @@ import WritePost from "./pages/WritePost";
 import { Layout } from "./components/Layout";
 import AllPosts from "./pages/AllPosts";
 import UpdatePost from "./pages/UpdatePost";
+import ViewPost from "./pages/ViewPost";
 
 export default function App() {
   return (
@@ -22,6 +23,8 @@ export default function App() {
               <Route path="/write-post" element={<WritePost />} />
               <Route path="/all-posts" element={<AllPosts />} />
               <Route path="update/:id" element={<UpdatePost />} />
+              <Route path="post/:id" element={<ViewPost />} />
+
             </Route>
           </Routes>
         </Router>
