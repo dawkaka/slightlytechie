@@ -2,7 +2,7 @@ import { useCallback, useState } from "react"
 import { useAtom } from "jotai";
 import { stateAtom } from "../jotai"
 import { PostType } from "../../types";
-import { generateId } from "../utils"
+import { generateId, getCoverPicture } from "../utils"
 import { MarkdownView } from "../components/MarkdownView";
 import { PostEditor } from "../components/PostEditor";
 import ToastD from "../components/Toast";
@@ -21,7 +21,7 @@ export default function WritePost() {
         let newPost: PostType = {
             title,
             body: postBody,
-            cover: "",
+            cover: getCoverPicture(),
             id: `${title.replace(" ", "_")}_${generateId()}`
         }
         posts.push(newPost)

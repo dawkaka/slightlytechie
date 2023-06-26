@@ -14,6 +14,7 @@ const HomePage = () => {
                     <img src={appState.profile.image} className="object-cover rounded-lg" style={{ height: "400px", width: "500px", objectFit: "cover" }} />
                 </div>
                 <hr />
+                <h3 className="text-2xl font-medium">New</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                     {
                         posts.map(post => <Post post={post} key={post.id} />)

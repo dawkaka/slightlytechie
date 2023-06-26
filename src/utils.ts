@@ -9,3 +9,10 @@ export function generateId() {
     }
     return id
 }
+
+
+export function getCoverPicture() {
+    const images = ["/pic1.webp", "/pic2.webp", "/pic3.jpeg", "/pic4.jpeg"]
+    let ind = Math.floor(Math.random() * 4)
+    return images[ind]
+}
