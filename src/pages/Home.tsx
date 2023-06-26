@@ -1,4 +1,4 @@
-import { useAtom, useSetAtom } from "jotai"
+import { useAtom } from "jotai"
 import { stateAtom } from "../jotai"
 import Post from "../components/Post"
 

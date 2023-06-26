@@ -1,6 +1,5 @@
 import WriteLogo from '../assets/writeB.svg'
 import ViewAllLogo from "../assets/viewall.svg"
-import ThemeToggle from "./ThemeToggle";
 import HomeLogo from "../assets/home.svg"
 import Profile from "./Profile";
 import { useEffect, useState } from "react";
