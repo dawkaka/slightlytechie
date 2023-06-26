@@ -3,6 +3,8 @@ import { PostType } from "../../types";
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import * as Toast from '@radix-ui/react-toast';
 import { useState } from "react";
+import { useAtom } from "jotai";
+import { stateAtom } from "../jotai";
 
 
 export default function Post({ post }: { post: PostType }) {
@@ -21,7 +23,7 @@ export default function Post({ post }: { post: PostType }) {
                     <Link to={`/update/${id}`}>
                         <button className="px-2 py-1 rounded-lg bg-green-400 text-white hover:bg-green-600">Update</button>
                     </Link>
-                    <DeleteDialog />
+                    <DeleteDialog id={id} />
                 </div>
             </div>
         </article>
@@ -29,7 +31,8 @@ export default function Post({ post }: { post: PostType }) {
 }
 
 
-function DeleteDialog() {
+function DeleteDialog({ id }: { id: string }) {
+    const [appState, setAppState] = useAtom(stateAtom)
     const [open, setOpen] = useState(false)
     return (
         <>
@@ -54,7 +57,11 @@ function DeleteDialog() {
                             </AlertDialog.Cancel>
                             <AlertDialog.Action asChild>
                                 <button
-                                    onClick={() => setOpen(true)}
+                                    onClick={() => {
+                                        const posts = appState.posts.filter(p => p.id !== id)
+                                        setAppState({ ...appState, posts })
+                                        setOpen(true)
+                                    }}
                                     className="text-red-700 bg-red-100 hover:bg-red-300 focus:shadow-red-700 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]">
                                     Yes, delete post
                                 </button>
