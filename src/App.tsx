@@ -11,6 +11,7 @@ import { Layout } from "./components/Layout";
 import AllPosts from "./pages/AllPosts";
 import UpdatePost from "./pages/UpdatePost";
 import ViewPost from "./pages/ViewPost";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
@@ -24,7 +25,7 @@ export default function App() {
               <Route path="/all-posts" element={<AllPosts />} />
               <Route path="update/:id" element={<UpdatePost />} />
               <Route path="post/:id" element={<ViewPost />} />
-
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </Router>
