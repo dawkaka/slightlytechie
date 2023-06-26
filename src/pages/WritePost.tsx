@@ -32,7 +32,7 @@ export default function WritePost() {
     return (
         <main className="w-full bg-gray-100 h-full flex flex-col items-center px-4 py-6">
             <div className="w-[min(100%,800px)]">
-                <div className="flex w-full justify-between items-center">
+                <div className="flex flex-col sm:flex-row gap-4 w-full justify-between items-center">
                     <h1 className="text-3xl font-bold">Create Post</h1>
                     <div className="flex gap-10">
                         <button onClick={() => setView("edit")} className={view === "edit" ? active : norm}>Edit</button>

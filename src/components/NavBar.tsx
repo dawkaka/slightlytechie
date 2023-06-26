@@ -11,10 +11,10 @@ import { stateAtom } from "../jotai";
 export default function NavBar() {
     return (
         <nav className="sticky top-0 bg-white z-10 px-2 py-4 border-b flex flex-col items-center">
-            <div className="custom-container flex justify-between  flex-auto items-center gap-4">
+            <div className="custom-container flex justify-between  flex-auto items-center gap-2">
                 <Profile />
                 <Search />
-                <ul className="flex flex-row items-center gap-4 w-80 justify-between">
+                <ul className="flex flex-row items-center gap-2 sm:gap-8 justify-between">
                     <li>
                         <Link to="/">
                             <NavIcon logo={HomeLogo} caption="Home" />
