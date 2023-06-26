@@ -69,9 +69,6 @@ function DeleteDialog() {
 }
 
 
-
-
-
 const ToastD = ({ open, setOpen }: { open: boolean, setOpen: (b: boolean) => void }) => {
 
     return (

@@ -9,6 +9,7 @@ import { Provider } from "jotai";
 import WritePost from "./pages/WritePost";
 import { Layout } from "./components/Layout";
 import AllPosts from "./pages/AllPosts";
+import UpdatePost from "./pages/UpdatePost";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
               <Route index element={<HomePage />} />
               <Route path="/write-post" element={<WritePost />} />
               <Route path="/all-posts" element={<AllPosts />} />
+              <Route path="update/:id" element={<UpdatePost />} />
             </Route>
           </Routes>
         </Router>
