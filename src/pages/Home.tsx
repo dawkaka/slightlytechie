@@ -1,10 +1,12 @@
 import { useAtom } from "jotai"
 import { stateAtom } from "../jotai"
 import Post from "../components/Post"
+import { Link } from "react-router-dom"
 
 const HomePage = () => {
     const [appState] = useAtom(stateAtom)
-    const posts = appState.posts.reverse()
+    let posts = appState.posts
+    posts = posts.map(p => { return { ...p } }).reverse()
 
     return (
         <main className="flex flex-col items-center">
@@ -19,6 +21,11 @@ const HomePage = () => {
                     {
                         posts.map(post => <Post post={post} key={post.id} />)
                     }
+                </div>
+                <div className="flex justify-center">
+                    <Link to="/all-posts" className="bg-violet-700 hover:bg-violet-500 text-white w-32 py-2 w-full text-center ">
+                        View All
+                    </Link>
                 </div>
             </div>
         </main>
