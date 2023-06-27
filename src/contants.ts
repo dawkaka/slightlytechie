@@ -16,16 +16,64 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at nisi augue.
         id: "post1"
     },
     {
-        title: "Post 2",
-        body: `## Subheading
+        title: "Post with all markdown and stuff",
+        body: `
+        # Heading 1
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem. Ut enim ad minim veniam.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum diam id semper venenatis. Nulla facilisi.
 
-1. Ordered item 1
-2. Ordered item 2
-3. Ordered item 3
+## Heading 2
 
-![Cover Image](https://example.com/cover2.jpg)`,
+Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer quis tortor ut justo aliquet semper.
+
+### Heading 3
+
+Etiam quis diam id felis tempor commodo. Sed vulputate risus ac enim aliquet, et dignissim leo viverra.
+
+#### Heading 4
+
+Curabitur eleifend mauris a erat ultricies, in fermentum neque consequat. Suspendisse dictum ex in risus consectetur fringilla.
+
+##### Heading 5
+
+Nullam elementum urna sed urna facilisis, a gravida lacus consequat. Nam nec fringilla turpis.
+
+###### Heading 6
+
+Sed commodo elit sed mauris feugiat, sed gravida arcu vulputate. Ut faucibus elit vitae massa aliquam, vitae tempus ipsum semper.
+
+---
+
+- Unordered list item 1
+- Unordered list item 2
+- Unordered list item 3
+
+1. Ordered list item 1
+2. Ordered list item 2
+3. Ordered list item 3
+
+---
+
+![Example Image](https://example.com/image.jpg)
+
+---
+
+> This is a blockquote. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+---
+
+**Bold text**
+
+*Italic text*
+
+`+ "Inline code`" + `
+`
+            + "```" + `javascript
+// Code block
+const message = 'Hello, World!';
+console.log(message);
+
+        `,
         cover: "/pic2.webp",
         id: "post2"
     },
