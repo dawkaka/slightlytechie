@@ -98,18 +98,33 @@ export function PostEditor({ postBody, setPostBody, title, setTitle, save, actio
                         />
                     </Form.Control>
                 </Form.Field >
-                <div className="bg-gray-100 flex items-center gap-5 justify-center w-full p-2">
-                    <FontBoldIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("bold")} />
-                    <FontItalicIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("italic")} />
-                    <Link1Icon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("link")} />
-                    <HeadingIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("heading")} />
-                    <QuoteIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("quote")} />
+                <div className="bg-gray-100 flex shrink-0 overflow-x-auto items-center gap-5 px-4 md:justify-center w-full p-2">
+                    <div className="shrink-0">
+                        <FontBoldIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("bold")} />
+                    </div>
+                    <div className="shrink-0">
+                        <FontItalicIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("italic")} />
+                    </div>
+                    <div className="shrink-0">
+                        <Link1Icon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("link")} />
+                    </div>
+                    <div className="shrink-0">
+                        <HeadingIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("heading")} />
+                    </div>
+                    <div className="shrink-0">
+                        <QuoteIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("quote")} />
+                    </div>
                     <img src={CodeLineIcon} height={35} width={35} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("code")} />
-                    <CodeIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("code_block")} />
+                    <div className="shrink-0">
+                        <CodeIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("code_block")} />
+                    </div>
                     <img src={OrderedListIcon} height={35} width={35} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("ord_list")} />
-                    <ListBulletIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("unord_list")} />
-                    <ImageIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("image")} />
-
+                    <div className="shrink-0">
+                        <ListBulletIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("unord_list")} />
+                    </div>
+                    <div className="shrink-0">
+                        <ImageIcon height={40} width={40} className="text-gray-600 hover:text-violet11 cursor-pointer rounded hover:bg-violet6 p-1" onClick={() => insertMarkdownElement("image")} />
+                    </div>
                 </div>
                 <Form.Field className="grid mb-[10px]" name="question">
                     <div className="flex items-baseline justify-between">
