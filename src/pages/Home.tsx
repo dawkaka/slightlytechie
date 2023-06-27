@@ -23,7 +23,7 @@ const HomePage = () => {
                     }
                 </div>
                 <div className="flex justify-center">
-                    <Link to="/all-posts" className="bg-violet-700 hover:bg-violet-500 text-white w-32 py-2 w-full text-center ">
+                    <Link to="/all-posts" className="bg-violet-700 hover:bg-violet-500 text-white w-32 py-2 text-center ">
                         View All
                     </Link>
                 </div>
