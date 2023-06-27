@@ -54,11 +54,11 @@ export function PostEditor({ postBody, setPostBody, title, setTitle, save, actio
                     setPostBody(value)
                     break;
                 case "unord_list":
-                    value = bodyRef.current.value.substring(0, start) + "\n-" + selectedText + "\n```" + bodyRef.current.value.substring(end);
+                    value = bodyRef.current.value.substring(0, start) + "\n-" + selectedText + "\n" + bodyRef.current.value.substring(end);
                     setPostBody(value)
                     break;
                 case "ord_list":
-                    value = bodyRef.current.value.substring(0, start) + "\n1." + selectedText + "\n```" + bodyRef.current.value.substring(end);
+                    value = bodyRef.current.value.substring(0, start) + "\n1." + selectedText + "\n" + bodyRef.current.value.substring(end);
                     setPostBody(value)
                     break;
                 case "image":
