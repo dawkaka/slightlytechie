@@ -1,17 +1,9 @@
 import { PostType } from "../types"
-
+import goBlog from "./content/go.md?raw"
 export const defalutPosts: PostType[] = [
     {
-        title: "Post 1",
-        body: `# Heading
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at nisi augue. 
-
-- List item 1
-- List item 2
-- List item 3
-
-![Cover Image](https://example.com/cover1.jpg)`,
+        title: "Go arrays and slices a deep dive",
+        body: goBlog,
         cover: "/pic1.webp",
         id: "post1"
     },
