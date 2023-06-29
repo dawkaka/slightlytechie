@@ -1,5 +1,7 @@
 import { PostType } from "../types"
 import goBlog from "./content/go.md?raw"
+import ex from "./content/examp.md?raw"
+
 export const defalutPosts: PostType[] = [
     {
         title: "Go arrays and slices a deep dive",
@@ -9,63 +11,7 @@ export const defalutPosts: PostType[] = [
     },
     {
         title: "Post with all markdown and stuff",
-        body: `
-        # Heading 1
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum diam id semper venenatis. Nulla facilisi.
-
-## Heading 2
-
-Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer quis tortor ut justo aliquet semper.
-
-### Heading 3
-
-Etiam quis diam id felis tempor commodo. Sed vulputate risus ac enim aliquet, et dignissim leo viverra.
-
-#### Heading 4
-
-Curabitur eleifend mauris a erat ultricies, in fermentum neque consequat. Suspendisse dictum ex in risus consectetur fringilla.
-
-##### Heading 5
-
-Nullam elementum urna sed urna facilisis, a gravida lacus consequat. Nam nec fringilla turpis.
-
-###### Heading 6
-
-Sed commodo elit sed mauris feugiat, sed gravida arcu vulputate. Ut faucibus elit vitae massa aliquam, vitae tempus ipsum semper.
-
----
-
-- Unordered list item 1
-- Unordered list item 2
-- Unordered list item 3
-
-1. Ordered list item 1
-2. Ordered list item 2
-3. Ordered list item 3
-
----
-
-![Example Image](https://example.com/image.jpg)
-
----
-
-> This is a blockquote. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
----
-
-**Bold text**
-
-*Italic text*
-
-`+ "Inline code`" + `
-`
-            + "```" + `javascript
-// Code block
-const message = 'Hello, World!';
-console.log(message);
-
-        `,
+        body: ex,
         cover: "/pic2.webp",
         id: "post2"
     },
